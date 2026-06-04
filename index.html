@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./script.js"></script>
+
+    <title>Frontend Mentor | Interactive card details form</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body>
+    <div class="body--bg">
+      <div class="card--back" aria-hidden="true">
+        <span class="card--data" id="cvc_dom" data-placeholder="000">000</span>
+      </div>
+      <div class="card--front">
+        <img
+          src="./images/card-logo.svg"
+          aria-hidden="Card logo - One white filled circle to the left next to it a smaller unfilled circle"
+        />
+        <div class="card-data-wrapper">
+          <span
+            class="card--number span--all"
+            id="card_number_dom"
+            data-placeholder="0000 0000 0000 0000"
+            >0000 0000 0000 0000</span
+          >
+          <span
+            class="card--data"
+            id="cardholder_name_dom"
+            data-placeholder="Jane Appleseed"
+            >Jane Appleseed
+          </span>
+          <div class="card--data" id="card_date_dom">
+            <span id="card_month_dom" data-placeholder="00">00</span>
+            <span id="separator">/</span>
+            <span id="card_year_dom" data-placeholder="00">00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <form>
+        <section class="form--section">
+          <div class="form--group span--all">
+            <label for="cholder_name">Cardholder name</label>
+            <input
+              id="cholder_name"
+              name="cardholder_name"
+              required
+              placeholder="e.g. Jane Appleseed"
+            />
+            <span class="error-text" aria-live="polite"></span>
+          </div>
+          <div class="form--group span--all">
+            <label for="cnumber">Card number</label>
+            <input
+              id="cnumber"
+              name="card_number"
+              required
+              maxlength="19"
+              placeholder="e.g. 1234 5678 9123 0000"
+              data-error="Wrong format, numbers only"
+              pattern="\d{4}\s\d{4}\s\d{4}\s\d{4}"
+            />
+            <span class="error-text" aria-live="polite"></span>
+          </div>
+
+          <div class="card--secret--wrapper span--all">
+            <fieldset>
+              <legend>Exp. Date (MM/YY)</legend>
+              <div class="exp--wrapper">
+                <div>
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    required
+                    maxlength="2"
+                    minlength="2"
+                    min="1"
+                    max="12"
+                    placeholder="MM"
+                    name="exp_month"
+                  />
+                  <span class="error-text" aria-live="polite"></span>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    required
+                    maxlength="2"
+                    minlength="2"
+                    placeholder="YY"
+                    name="exp_year"
+                  />
+                  <span class="error-text" aria-live="polite"></span>
+                </div>
+              </div>
+            </fieldset>
+            <div class="form--group">
+              <label for="cvc">CVC</label>
+              <input
+                type="text"
+                id="cvc"
+                name="cvc_number"
+                minlength="3"
+                maxlength="3"
+                required
+                placeholder=" e.g. 123"
+              />
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+          </div>
+          <button type="submit" class="span--all">Confirm</button>
+        </section>
+      </form>
+      <section class="complete--section">
+        <img
+          src="./images/icon-complete.svg"
+          class="complete--logo"
+          alt="Form completed checkmark"
+        />
+
+        <div>
+          <h2>Thank you!</h2>
+          <span>We´ve added your card details</span>
+        </div>
+
+        <button>Continue</button>
+      </section>
+
+      <!-- Completed state start -->
+    </div>
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+  </body>
+</html>

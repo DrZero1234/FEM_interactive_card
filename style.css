@@ -1,0 +1,384 @@
+@font-face {
+  font-family: "Space Grotesk";
+  src:
+    url("./fonts/SpaceGrotesk-Bold.woff2") format("woff2"),
+    url("./fonts/SpaceGrotesk-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src:
+    url("./fonts/SpaceGrotesk-Light.woff2") format("woff2"),
+    url("./fonts/SpaceGrotesk-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src:
+    url("./fonts/SpaceGrotesk-Medium.woff2") format("woff2"),
+    url("./fonts/SpaceGrotesk-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src:
+    url("./fonts/SpaceGrotesk-Regular.woff2") format("woff2"),
+    url("./fonts/SpaceGrotesk-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary-r400: hsl(0, 100%, 66%);
+
+  --neutral-w900: hsl(0, 100%, 100%);
+  --neutral-g200: hsl(270, 3%, 87%);
+  --neutral-g400: hsl(212, 12%, 71%);
+  --neutral-p800: hsl(278, 68%, 11%);
+
+  --font-size: 18px;
+}
+
+@layer reset {
+  /* 1. Use a more-intuitive box-sizing model */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. Remove default margin */
+  *:not(dialog) {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 3. Enable keyword animations */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    font-size: var(--font-size);
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  /* 6. Improve media defaults */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* 7. Inherit fonts for form controls */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* 8. Avoid text overflows */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  /* 9. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+
+  /*
+  10. Create a root stacking context
+*/
+  #root,
+  #__next {
+    isolation: isolate;
+  }
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  accent-color: var(--neutral-p800);
+  grid-template-rows: minmax(300px, 1fr) 2fr;
+
+  @media screen and (min-width: 65em) {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.body--bg {
+  background-image: url(./images/bg-main-mobile.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.card--front,
+.card--back {
+  display: block;
+  position: absolute;
+  width: 350px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.card--front {
+  background-image: url("./images/bg-card-front.png");
+  top: 45%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media screen and (min-width: 65em) {
+    top: 30%;
+    left: 40%;
+
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.card--front img {
+  max-width: 80px;
+  max-height: 48px;
+  flex: 1;
+}
+
+.card-data-wrapper {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 1em;
+  color: var(--neutral-w900);
+  align-content: flex-end;
+  text-transform: uppercase;
+}
+
+.card-data-wrapper .card--number {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-wrap: nowrap;
+}
+
+#cardholder_name_dom,
+#card_date_dom {
+  font-size: 0.875rem;
+  color: var(--neutral-g200);
+  font-weight: 500;
+}
+
+#card_date_dom {
+  justify-self: flex-end;
+}
+
+.card--back {
+  background-image: url("./images/bg-card-back.png");
+  top: 20%;
+  left: 20%;
+  @media screen and (min-width: 65em) {
+    top: 55%;
+    left: 45%;
+  }
+}
+
+#cvc_dom {
+  position: absolute;
+  right: 40px;
+  top: 87px;
+  color: var(--neutral-w900);
+  font-size: 0.875rem;
+}
+
+.container {
+  margin: auto;
+  margin: 2rem;
+  @media screen and (min-width: 65rem) {
+    /* width: 40%; */
+    padding: 5em;
+    margin: auto;
+  }
+}
+@layer form {
+  label,
+  legend {
+    text-transform: uppercase;
+    color: var(--neutral-p800);
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-wrap: nowrap;
+  }
+
+  legend {
+    padding-bottom: 0.25rem;
+  }
+
+  input,
+  textarea {
+    color: var(--neutral-p800);
+    font-weight: 500;
+    border: 1px solid var(--neutral-g200);
+    border-radius: 6px;
+    padding: 0.5em 1em;
+
+    &:focus-visible {
+      outline: none;
+      border-color: hsl(278, 94%, 30%);
+    }
+  }
+
+  fieldset {
+    padding: 0;
+    border: 0;
+    flex: 1;
+  }
+
+  input:user-invalid {
+    border-color: var(--primary-r400);
+  }
+
+  .error-text {
+    color: var(--primary-r400);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .error-text:empty {
+    display: none;
+  }
+
+  .span--all {
+    grid-column: 1 / -1;
+  }
+
+  .form--section {
+    display: grid;
+    gap: 1em;
+    align-content: center;
+    margin-top: 2em;
+    min-width: 0;
+    min-height: 0;
+    @media screen and (min-width: 65em) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: unset;
+    }
+  }
+
+  .form--group {
+    display: grid;
+    row-gap: 0.25em;
+    grid-auto-rows: min-content;
+  }
+
+  .exp--wrapper,
+  .card--secret--wrapper {
+    display: flex;
+  }
+  .card--secret--wrapper {
+    column-gap: 1em;
+  }
+
+  .card--secret--wrapper .form--group {
+    flex: 1;
+  }
+
+  .exp--wrapper {
+    column-gap: 0.5em;
+  }
+
+  .exp--wrapper div {
+    flex: 1;
+  }
+
+  .exp--wrapper input {
+    width: 100%;
+    min-width: 64px;
+  }
+
+  button {
+    color: var(--neutral-w900);
+    font: inherit;
+    font-weight: 500;
+    border-radius: 6px;
+    font-weight: 500;
+    background-color: var(--neutral-p800);
+    border: 0;
+    padding: 0.75em 0.5em;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--neutral-g200);
+      color: var(--neutral-p800);
+      cursor: pointer;
+    }
+  }
+
+  .complete--section {
+    display: none;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2em;
+    text-align: center;
+    @media screen and (max-width: 65em) {
+      margin-top: 2em;
+    }
+  }
+
+  .complete--section button {
+    width: 100%;
+    @media screen and (min-width: 65em) {
+      width: 200%;
+      overflow: visible;
+    }
+  }
+
+  .complete--section h2 {
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+  }
+
+  .complete--section span {
+    color: var(--neutral-g400);
+  }
+}
