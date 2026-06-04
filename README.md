@@ -30,9 +30,9 @@ Users should be able to:
 
 ### Screenshot
 
-![Mobile View](./mobile.jpg)
+![Mobile View](./mobile.png)
 
-![Desktop View](./desktop.jpg)
+![Desktop View](./desktop.png)
 
 ### Links
 
